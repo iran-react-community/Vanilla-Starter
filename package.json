@@ -1,0 +1,38 @@
+{
+  "name": "vanilla-starter",
+  "version": "1.0.0",
+  "description": "A vanilla stack for UI development",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development webpack -d --config ./webpack.development.config.js --progress --profile --colors",
+    "build": "NODE_ENV=production webpack -p --config ./webpack.production.config.js --progress --profile --colors"
+  },
+  "author": "amerllica",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^8.3.0",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.5.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.4",
+    "css-mqpacker": "^6.0.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "postcss": "^6.0.21",
+    "postcss-apply": "^0.10.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-custom-properties": "^7.0.0",
+    "postcss-extend": "^1.0.5",
+    "postcss-loader": "^2.1.4",
+    "postcss-nested": "^3.0.0",
+    "postcss-nested-ancestors": "^2.0.0",
+    "postcss-partial-import": "^4.1.0",
+    "postcss-scss": "^1.0.5",
+    "style-loader": "^0.21.0",
+    "webpack": "^3.11.0",
+    "webpack-cleanup-plugin": "^0.5.1"
+  }
+}
