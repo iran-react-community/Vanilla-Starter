@@ -1,6 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 const distDir = path.join(__dirname, './dist');
 const srcDir = path.join(__dirname, './src');
@@ -76,6 +77,9 @@ module.exports = {
       minify: false,
       hash: false,
       cache: false,
+    }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer'
     }),
   ]
 };
