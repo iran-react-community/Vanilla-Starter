@@ -87,6 +87,7 @@ module.exports = {
       minify: true,
       hash: true,
       cache: true,
+      showErrors: false,
     }),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer'
