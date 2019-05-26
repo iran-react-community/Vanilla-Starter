@@ -1,15 +1,18 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 
 const distDir = path.join(__dirname, './dist');
 const srcDir = path.join(__dirname, './src');
 
 module.exports = {
   name: 'client',
+  mode: 'production',
   target: 'web',
   entry: {
     bundle: `${srcDir}/scripts/index.js`,
@@ -35,34 +38,39 @@ module.exports = {
       },
       {
         test: /\.pcss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
-                importLoaders: 1,
-                // localIdentName: '[sha256:hash:base64:5]',
-                localIdentName: '[local]',
-                sourceMap: false,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              // localIdentName: '[sha256:hash:base64:5]',
+              localIdentName: '[local]',
+              sourceMap: false,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: `${__dirname}/postcss.config.js`,
               },
             },
-            {
-              loader: 'postcss-loader',
-              options: {
-                config: {
-                  path: `${__dirname}/postcss.config.js`,
-                },
-              },
-            },
-          ],
-        }),
+          },
+        ],
       },
     ],
   },
+  optimization: {
+    minimizer: [new UglifyJsPlugin({
+      exclude: /(node_modules[\\\/])/,
+    })],
+  },
   plugins: [
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: 'assets/css/styles.css',
       allChunks: true,
     }),
@@ -72,14 +80,6 @@ module.exports = {
       },
     }),
     new CleanWebpackPlugin(distDir),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        screw_ie8: true,
-        drop_console: true,
-        drop_debugger: true,
-      }
-    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
       template: `${srcDir}/index.html`,
