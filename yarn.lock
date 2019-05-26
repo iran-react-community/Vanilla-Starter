@@ -2160,13 +2160,6 @@ html-minifier@^3.2.3:
     relateurl "0.2.x"
     uglify-js "3.4.x"
 
-html-webpack-link-type-plugin@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/html-webpack-link-type-plugin/-/html-webpack-link-type-plugin-1.0.3.tgz#77b87f6ca881a36d3d7071401f8362c280a8ad49"
-  integrity sha512-vhtAb0TMWGYIMHwShtJLkFH2nQ5hrPA3ODvnbNdwXlLsfT8fVEiO45jUjZs8pESifo4BcwrhpstCoHGR/VYL2g==
-  dependencies:
-    minimatch "3.0.4"
-
 html-webpack-plugin@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-3.2.0.tgz#b01abbd723acaaa7b37b6af4492ebda03d9dd37b"
