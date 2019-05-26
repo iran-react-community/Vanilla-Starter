@@ -6,65 +6,76 @@ const distDir = path.join(__dirname, './dist');
 const srcDir = path.join(__dirname, './src');
 
 module.exports = {
-    name: 'client',
-    target: 'web',
-    entry: `${srcDir}/scripts/index.js`,
-    output: {
-        path: distDir,
-        filename: 'bundle.js',
-        publicPath: '',
+  name: 'client',
+  target: 'web',
+  entry: {
+    bundle: `${srcDir}/scripts/index.js`,
+  },
+  output: {
+    path: distDir,
+    filename: 'assets/js/[name].js',
+    publicPath: '',
+  },
+  watch: true,
+  watchOptions: {
+    ignored: /(node_modules[\\\/])/,
+  },
+  resolve: {
+    extensions: ['.js'],
+    alias: {
+      '~': srcDir,
     },
-    watch: true,
-    watchOptions: {
-        ignored: /(node_modules[\\\/])/,
-    },
-    resolve: {
-        extensions: ['.js'],
-    },
-    devtool: 'source-map',
-    module: {
-        rules: [
-            {
-                test: /\.(js)$/,
-                exclude: /(node_modules[\\\/])/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                    },
-                ],
-            },
-            {
-                test: /\.pcss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                modules: true,
-                                importLoaders: 1,
-                                localIdentName: '[local]',
-                                sourceMap: true,
-                            },
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                config: {
-                                    path: `${__dirname}/postcss.config.js`,
-                                },
-                            },
-                        },
-                    ],
-                }),
-            },
+  },
+  devtool: 'source-map',
+  module: {
+    rules: [
+      {
+        test: /\.(js)$/,
+        exclude: /(node_modules[\\\/])/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
         ],
-    },
-    plugins: [
-        new ExtractTextPlugin({
-            filename: 'styles.css',
-            allChunks: true,
+      },
+      {
+        test: /\.pcss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: 1,
+                localIdentName: '[local]',
+                sourceMap: true,
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                config: {
+                  path: `${__dirname}/postcss.config.js`,
+                },
+              },
+            },
+          ],
         }),
-        new HtmlWebpackPlugin(),
-    ]
+      },
+    ],
+  },
+  plugins: [
+    new ExtractTextPlugin({
+      filename: 'assets/css/styles.css',
+      allChunks: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: `${srcDir}/index.html`,
+      inject: 'body',
+      minify: false,
+      hash: false,
+      cache: false,
+    }),
+  ]
 };
