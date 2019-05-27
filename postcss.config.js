@@ -9,7 +9,7 @@ module.exports = {
             'prefix': '_',
             'extension': '.pcss',
             'glob': false,
-            'path': ['./../src/styles']
+            'path': ['./src/styles']
         },
         'postcss-nested-ancestors': {},
         'postcss-apply': {},
