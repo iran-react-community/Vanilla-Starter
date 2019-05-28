@@ -28,7 +28,6 @@
     "postcss-custom-properties": "^7.0.0",
     "postcss-extend": "^1.0.5",
     "postcss-loader": "^2.1.4",
-    "postcss-modules": "^1.4.1",
     "postcss-nested": "^3.0.0",
     "postcss-nested-ancestors": "^2.0.0",
     "postcss-partial-import": "^4.1.0",
