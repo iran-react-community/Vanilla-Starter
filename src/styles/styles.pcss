@@ -19,6 +19,11 @@
 * {
   box-sizing: border-box;
 }
+
+h1 {
+  margin: 0;
+}
+
 html,
 body {
   margin: 0;
@@ -29,9 +34,14 @@ body {
   color: #fff;
   background: #1d1d1d;
 }
+
 header {
   width: 100%;
-  height: 100vh;
+  height: 70vh;
+}
+
+main {
+  height: 30vh;
 }
 
 .logos {
@@ -50,6 +60,7 @@ header {
   display: flex;
   align-items: center;
 }
+
 .container img {
   transform: translateY(-25%);
 }
@@ -69,4 +80,13 @@ header {
 .logos__js {
   animation: orbit 2s infinite linear;
   z-index: 3;
+}
+
+.title {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.timer {
+  text-align: center;
 }
