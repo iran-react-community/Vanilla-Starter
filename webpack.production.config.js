@@ -5,6 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 const distDir = path.join(__dirname, './dist');
@@ -92,5 +93,11 @@ module.exports = {
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer'
     }),
+    new CopyWebpackPlugin([
+      {
+        from: `${srcDir}/assets`,
+        to: `${distDir}/assets`
+      }
+    ])
   ]
 };

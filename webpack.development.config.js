@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const distDir = path.join(__dirname, './dist');
 const srcDir = path.join(__dirname, './src');
@@ -83,5 +84,11 @@ module.exports = {
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer'
     }),
+    new CopyWebpackPlugin([
+      {
+        from: `${srcDir}/assets`,
+        to: `${distDir}/assets`
+      }
+    ])
   ],
 };
