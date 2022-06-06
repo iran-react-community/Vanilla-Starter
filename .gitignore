@@ -2,3 +2,5 @@ node_modules
 .idea
 .vscode
 dist
+
+.DS_Store
